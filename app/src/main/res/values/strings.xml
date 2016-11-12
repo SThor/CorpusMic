@@ -1,3 +1,31 @@
 <resources>
-    <string name="app_name">CorpusMic</string>
+    <string name="app_name" translatable="false">CorpusMic</string>
+    <string name="title_activity_drawer">Home</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="recognized_command_legend">Recognized command : </string>
+    <string name="recognized_command">None</string>
+
+    <string-array name="commands">
+        <item>"Avance"</item>
+        <item>"Recule"</item>
+        <item>"Droite"</item>
+        <item>"Gauche"</item>
+        <item>"État d'urgence"</item>
+        <item>"Tourne droite"</item>
+        <item>"Tourne gauche"</item>
+        <item>"Fais un flip"</item>
+        <item>"Arrête toi"</item>
+    </string-array>
+
+    <string name="text_empty">There are no commands in corpus.</string>
+    <string name="corpus">Corpus</string>
+    <string name="recognize">Recognize</string>
+    <string name="tmp" translatable="false">tmp</string>
 </resources>

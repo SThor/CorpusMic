@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="action_settings">Paramètres</string>
+    <string name="hello_blank_fragment">Bonjour fragment vide</string>
+    <string name="navigation_drawer_close">Fermer le tiroir de navigation</string>
+    <string name="navigation_drawer_open">Ouvrir le tiroir de navigation</string>
+    <string name="recognized_command">Aucune</string>
+    <string name="recognized_command_legend">"Commande reconnue : "</string>
+    <string name="text_empty">Il n\'y a pas de commande dans le corpus.</string>
+    <string name="title_activity_drawer">Accueil</string>
+    <string name="corpus">Corpus</string>
+    <string name="recognize">Reconnaître</string>
+</resources>
