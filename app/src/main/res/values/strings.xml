@@ -1,13 +1,12 @@
 <resources>
     <string name="app_name" translatable="false">CorpusMic</string>
-    <string name="title_activity_drawer">Home</string>
+    <string name="title_activity_drawer" translatable="false">Corpus</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="recognized_command_legend">Recognized command : </string>
     <string name="recognized_command">None</string>
@@ -25,7 +24,10 @@
     </string-array>
 
     <string name="text_empty">There are no commands in corpus.</string>
-    <string name="corpus">Corpus</string>
-    <string name="recognize">Recognize</string>
-    <string name="tmp" translatable="false">tmp</string>
+    <string name="nav_corpus">Corpus</string>
+    <string name="nav_recognize">Recognize</string>
+    <string name="nav_tmp" translatable="false">tmp</string>
+    <string name="about1">This application is used to record a corpus of commands, which will be used to pilot a drone. The commands are recorded in *wav format. The app also allows the user to test the vocal recognition, on the recorded corpus.</string>
+    <string name="about2">This application was developped for a project made during a Master IHM at Paul Sabatier University, by Julien Soula, Benjamin Saint-Sever, Safwan Al Masri, Paul Givel.</string>
+    <string name="nav_about">About</string>
 </resources>

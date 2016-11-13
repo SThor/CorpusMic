@@ -5,26 +5,23 @@ import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.ListFragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
-import android.widget.ArrayAdapter;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import fr.m1_tlse3.mcs.corpusmic.Fragments.AboutFragment;
 import fr.m1_tlse3.mcs.corpusmic.Fragments.CorpusFragment;
 import fr.m1_tlse3.mcs.corpusmic.Fragments.RecognizeFragment;
-import fr.m1_tlse3.mcs.corpusmic.Fragments.TmpFragment;
 
 public class DrawerActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, RecognizeFragment.OnFragmentInteractionListener, TmpFragment.OnFragmentInteractionListener{
+        implements NavigationView.OnNavigationItemSelectedListener, RecognizeFragment.OnFragmentInteractionListener{
 
     private static final String TAG = "CorpusMic";
 
@@ -130,8 +127,8 @@ public class DrawerActivity extends AppCompatActivity
             case R.id.nav_recognize:
                 fragmentClass = RecognizeFragment.class;
                 break;
-            case R.id.nav_tmp: //FIXME
-                fragmentClass = TmpFragment.class;
+            case R.id.nav_about:
+                fragmentClass = AboutFragment.class;
                 break;
             default:
                 fragmentClass = CorpusFragment.class;

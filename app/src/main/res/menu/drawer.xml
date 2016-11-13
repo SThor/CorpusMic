@@ -5,15 +5,16 @@
         <item
             android:id="@+id/nav_corpus"
             android:icon="@drawable/ic_queue_music"
-            android:title="@string/corpus"/>
+            android:title="@string/nav_corpus"
+            android:checked="true"/>
         <item
             android:id="@+id/nav_recognize"
             android:icon="@drawable/ic_hearing"
-            android:title="@string/recognize" />
+            android:title="@string/nav_recognize" />
         <item
-            android:id="@+id/nav_tmp"
-            android:icon="@drawable/ic_mic_off"
-            android:title="@string/tmp" />
+            android:id="@+id/nav_about"
+            android:icon="@drawable/ic_help"
+            android:title="@string/nav_about" />
     </group>
 
    <!-- <item android:title="Communicate">
