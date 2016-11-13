@@ -23,7 +23,7 @@ import fr.m1_tlse3.mcs.corpusmic.Fragments.RecognizeFragment;
 public class DrawerActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, RecognizeFragment.OnFragmentInteractionListener{
 
-    private static final String TAG = "CorpusMic";
+    private static final String TAG = "CorpusMic/DrawerActivity";
 
     private List<String> commands = new ArrayList<String>(Arrays.asList(
             "Acance",

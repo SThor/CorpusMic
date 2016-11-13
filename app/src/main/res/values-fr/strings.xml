@@ -9,7 +9,9 @@
     <string name="text_empty">Il n\'y a pas de commande dans le corpus.</string>
     <string name="nav_corpus">Corpus</string>
     <string name="nav_recognize">Reconnaître</string>
-    <string name="about1">Cette application sert à enregistrer un corpus de commandes, qui sera utilisé pour commander un drone. Les commandes sont enregistrées au format *.wav . L\'application propose de plus de tester la reconnaissance vocale, sur le corpus enregistré.</string>
+    <string name="about1">Cette application sert à enregistrer un corpus de commandes, qui sera utilisé pour commander un drone. Les commandes sont enregistrées au format *.wav , dans le stockage externe. L\'application propose de plus de tester la reconnaissance vocale, sur le corpus enregistré.</string>
     <string name="about2">Cette application a été développée pour un projet de Master1 IHM à l\'Université Paul Sabatier, par Julien Soula, Benjamin Saint-Sever, Safwan Al Masri, Paul Givel.</string>
     <string name="nav_about">À propos</string>
+    <string name="created">" créé."</string>
+    <string name="file">"Fichier "</string>
 </resources>

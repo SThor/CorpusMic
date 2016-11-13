@@ -4,8 +4,9 @@ import android.app.Activity;
 import android.content.Context;
 import android.media.AudioFormat;
 import android.media.AudioRecord;
-import android.media.Image;
+import android.media.MediaPlayer;
 import android.media.MediaRecorder;
+import android.net.Uri;
 import android.os.Environment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -30,9 +32,9 @@ import java.util.List;
  */
 
 public class CorpusAdapter extends BaseAdapter {
+    private final String fileExt;
+    private final String folder;
     private static final int RECORDER_BPP = 16;
-    private static final String AUDIO_RECORDER_FILE_EXT_WAV = ".wav";
-    private static final String AUDIO_RECORDER_FOLDER = "CorpusMic";
     private static final String AUDIO_RECORDER_TEMP_FILE = "record_temp.raw";
     private static final int RECORDER_SAMPLERATE = 44100;
     private static final int RECORDER_CHANNELS = AudioFormat.CHANNEL_IN_STEREO;
@@ -45,7 +47,7 @@ public class CorpusAdapter extends BaseAdapter {
 
     private List<String> commands = new ArrayList<>();
     private Context mContext;
-    private final String TAG = "CorpusAdapter";
+    private final String TAG = "CorpusMic/CorpusAdapter";
 
     public CorpusAdapter(Context context) {
         mContext = context;
@@ -53,6 +55,8 @@ public class CorpusAdapter extends BaseAdapter {
         bufferSize = AudioRecord.getMinBufferSize(8000,
                 AudioFormat.CHANNEL_CONFIGURATION_MONO,
                 AudioFormat.ENCODING_PCM_16BIT);
+        folder = mContext.getResources().getString(R.string.app_name);
+        fileExt = mContext.getResources().getString(R.string.file_ext);
     }
 
     @Override
@@ -88,29 +92,56 @@ public class CorpusAdapter extends BaseAdapter {
 
             }
         });
+
+        setupRecordButton(v,position);
+        setupPlayButton(v,position);
+
+        return v;
+    }
+
+    private void setupPlayButton(final View v, final int position){
+        ImageButton play_button = (ImageButton) v.findViewById(R.id.play_button);
+        String filepath = Environment.getExternalStorageDirectory().getPath();
+        final File file = new File( filepath +"/"+ folder +"/"+ position + fileExt);
+        play_button.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                MediaPlayer mPlayer = MediaPlayer.create(mContext, Uri.fromFile(file));
+                mPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+
+                    @Override
+                    public void onCompletion(MediaPlayer mp) {
+                        mp.release();
+                    }
+                });
+                mPlayer.start();
+            }
+        });
+    }
+
+    private void setupRecordButton(final View v, final int position){
         ImageButton record_button = (ImageButton) v.findViewById(R.id.record_button);
-        setRecordRessource(v, position);
+        setButtonsRessources(v, position);
         record_button.setOnTouchListener(new View.OnTouchListener() {
             @Override
-            public boolean onTouch(View v, MotionEvent event) {
+            public boolean onTouch(View button, MotionEvent event) {
                 switch(event.getAction()){
                     case MotionEvent.ACTION_DOWN:
-                        Log.d(TAG,"Start Recording command"+position);
+                        Log.d(TAG,"Started recording command "+position);
                         startRecording();
                         break;
                     case MotionEvent.ACTION_UP:
-                        Log.d(TAG,"stop Recording");
+                        Log.d(TAG,"Stoped recording");
                         stopRecording(position);
-                        setRecordRessource((ImageButton)v, position);
+                        setButtonsRessources(v, position);
                         break;
                 }
                 return false;
             }
         });
-        return v;
     }
 
-    private void setRecordRessource(View v, int position) {
+    private void setButtonsRessources(View v, int position) {
         ImageButton record_button = (ImageButton) v.findViewById(R.id.record_button);
         ImageButton play_button = (ImageButton) v.findViewById(R.id.play_button);
         if(fileExists(position)){
@@ -126,10 +157,7 @@ public class CorpusAdapter extends BaseAdapter {
 
     private boolean fileExists(int position){
         String filepath = Environment.getExternalStorageDirectory().getPath();
-        File file = new File( filepath +"/"+AUDIO_RECORDER_FOLDER+"/"+ position + AUDIO_RECORDER_FILE_EXT_WAV);
-        String fileName = file.getAbsolutePath();
-
-        Log.d(TAG, "file searched for : "+fileName);
+        File file = new File( filepath +"/"+ folder +"/"+ position + fileExt);
         return file.exists();
     }
 
@@ -150,21 +178,18 @@ public class CorpusAdapter extends BaseAdapter {
 
     private String getFilename(int position){
         String filepath = Environment.getExternalStorageDirectory().getPath();
-        File file = new File(filepath,AUDIO_RECORDER_FOLDER);
+        File file = new File(filepath, folder);
 
         if(!file.exists()){
             file.mkdirs();
         }
-        String fileName = file.getAbsolutePath() + "/" + position + AUDIO_RECORDER_FILE_EXT_WAV;
-
-        Log.d(TAG, "file created : "+fileName);
-
+        String fileName = file.getAbsolutePath() + "/" + position + fileExt;
         return fileName;
     }
 
     private String getTempFilename(){
         String filepath = Environment.getExternalStorageDirectory().getPath();
-        File file = new File(filepath,AUDIO_RECORDER_FOLDER);
+        File file = new File(filepath, folder);
 
         if(!file.exists()){
             file.mkdirs();
@@ -225,8 +250,14 @@ public class CorpusAdapter extends BaseAdapter {
             recordingThread = null;
         }
 
-        copyWaveFile(getTempFilename(),getFilename(position));
+        String filename = getFilename(position);
+        copyWaveFile(getTempFilename(),filename);
         deleteTempFile();
+        String file = mContext.getResources().getString(R.string.file);
+        String created = mContext.getResources().getString(R.string.created);
+        Toast toast = Toast.makeText(mContext,file+filename+created,Toast.LENGTH_SHORT);
+        toast.show();
+
     }
 
     private void deleteTempFile() {
@@ -252,7 +283,7 @@ public class CorpusAdapter extends BaseAdapter {
             totalAudioLen = in.getChannel().size();
             totalDataLen = totalAudioLen + 36;
 
-           Log.d(TAG,"File size: " + totalDataLen);
+            Log.d(TAG,"File size: " + totalDataLen);
 
             WriteWaveFileHeader(out, totalAudioLen, totalDataLen,
                     longSampleRate, channels, byteRate);
