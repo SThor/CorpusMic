@@ -16,7 +16,7 @@ import fr.m1_tlse3.mcs.corpusmic.R;
  * A simple {@link Fragment} subclass.
  */
 public class RecognizeFragment extends Fragment {
-    public native String stringFromJNI();
+    public native int stringFromJNI();
     private static final String TAG = "CorpusMic/Recognize";
 
     public RecognizeFragment() {
@@ -33,7 +33,7 @@ public class RecognizeFragment extends Fragment {
 
         fab.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                int commandIndex = 2; //fixme by adding call to the c++ function here
+                int commandIndex = stringFromJNI(); //fixme by adding call to the c++ function here
                 String command = getResources().getStringArray(R.array.commands)[commandIndex];
                 TextView textView = (TextView) container.findViewById(R.id.linear).findViewById(R.id.recognized_command);
                 textView.setText(command);
