@@ -17,16 +17,49 @@
     <string name="created">\" created.\"</string>
     <string name="file_ext" translatable="false">.wav</string>
     <string name="temp_file" translatable="false">record_temp.raw</string>
+    <string name="nav_settings">Naming settings</string>
+    <string name="pref_useGender">Use gender</string>
+    <string name="pref_gender">Gender</string>
+    <string name="error">Error in file creation. Please check app permissions.</string>
+    <string name="pref_userNumber">User number</string>
 
     <string-array name="commands">
+        <item>"Arrête toi"</item>
+        <item>"Atterrissage"</item>
         <item>"Avance"</item>
-        <item>"Recule"</item>
+        <item>"Décollage"</item>
         <item>"Droite"</item>
-        <item>"Gauche"</item>
         <item>"État d'urgence"</item>
+        <item>"Fais un flip"</item>
+        <item>"Gauche"</item>
+        <item>"Plus bas"</item>
+        <item>"Plus haut"</item>
+        <item>"Recule"</item>
         <item>"Tourne droite"</item>
         <item>"Tourne gauche"</item>
-        <item>"Fais un flip"</item>
-        <item>"Arrête toi"</item>
     </string-array>
+    <string-array name="commands_trimmed">
+        <item>"arretetoi"</item>
+        <item>"atterrissage"</item>
+        <item>"avance"</item>
+        <item>"decollage"</item>
+        <item>"droite"</item>
+        <item>"etatdurgence"</item>
+        <item>"faisunflip"</item>
+        <item>"gauche"</item>
+        <item>"plushaut"</item>
+        <item>"plusbas"</item>
+        <item>"recule"</item>
+        <item>"tournedroite"</item>
+        <item>"tournegauche"</item>
+    </string-array>
+    <string-array name="pref_genderEntries">
+        <item>"Male"</item>
+        <item>"Female"</item>
+    </string-array>
+    <string-array name="pref_genderValues">
+        <item>"M"</item>
+        <item>"F"</item>
+    </string-array>
+
 </resources>

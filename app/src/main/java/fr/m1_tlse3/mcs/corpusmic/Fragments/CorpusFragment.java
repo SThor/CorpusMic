@@ -1,6 +1,6 @@
 package fr.m1_tlse3.mcs.corpusmic.Fragments;
 
-import android.support.v4.app.ListFragment;
+import android.app.ListFragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;

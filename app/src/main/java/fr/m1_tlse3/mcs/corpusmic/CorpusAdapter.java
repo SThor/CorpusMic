@@ -2,12 +2,15 @@ package fr.m1_tlse3.mcs.corpusmic;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.media.AudioFormat;
 import android.media.AudioRecord;
 import android.media.MediaPlayer;
 import android.media.MediaRecorder;
 import android.net.Uri;
 import android.os.Environment;
+import android.preference.PreferenceFragment;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -102,7 +105,7 @@ public class CorpusAdapter extends BaseAdapter {
     private void setupPlayButton(final View v, final int position){
         ImageButton play_button = (ImageButton) v.findViewById(R.id.play_button);
         String filepath = Environment.getExternalStorageDirectory().getPath();
-        final File file = new File( filepath +"/"+ folder +"/"+ position + fileExt);
+        final File file = new File( getFilename(position) );
         play_button.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -156,8 +159,7 @@ public class CorpusAdapter extends BaseAdapter {
     }
 
     private boolean fileExists(int position){
-        String filepath = Environment.getExternalStorageDirectory().getPath();
-        File file = new File( filepath +"/"+ folder +"/"+ position + fileExt);
+        File file = new File(getFilename(position));
         return file.exists();
     }
 
@@ -183,7 +185,19 @@ public class CorpusAdapter extends BaseAdapter {
         if(!file.exists()){
             file.mkdirs();
         }
-        String fileName = file.getAbsolutePath() + "/" + position + fileExt;
+
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(mContext);
+        Boolean use_Gender = sharedPref.getBoolean("pref_useGender",false);
+        String gender = sharedPref.getString("pref_gender","O");
+        gender = use_Gender?gender:"";
+
+        /*int pref_userNumber = Integer.getInteger(sharedPref.getString("pref_userNumber","00"));
+        String userNumber = String.format("%02d",2); //fixme*/
+        String userNumber = sharedPref.getString("pref_userNumber","99");
+
+        String command = mContext.getResources().getStringArray(R.array.commands_trimmed)[position];
+
+        String fileName = file.getAbsolutePath() + "/" + gender + userNumber +"_"+ command + fileExt;
         return fileName;
     }
 
@@ -251,11 +265,17 @@ public class CorpusAdapter extends BaseAdapter {
         }
 
         String filename = getFilename(position);
-        copyWaveFile(getTempFilename(),filename);
+        Boolean success = copyWaveFile(getTempFilename(),filename);
         deleteTempFile();
-        String file = mContext.getResources().getString(R.string.file);
-        String created = mContext.getResources().getString(R.string.created);
-        Toast toast = Toast.makeText(mContext,file+filename+created,Toast.LENGTH_SHORT);
+        Toast toast;
+        if(success){
+            String file = mContext.getResources().getString(R.string.file);
+            String created = mContext.getResources().getString(R.string.created);
+            toast = Toast.makeText(mContext,file+filename+created,Toast.LENGTH_LONG);
+        }else {
+            String error = mContext.getResources().getString(R.string.error);
+            toast = Toast.makeText(mContext,error,Toast.LENGTH_LONG);
+        }
         toast.show();
 
     }
@@ -266,7 +286,7 @@ public class CorpusAdapter extends BaseAdapter {
         file.delete();
     }
 
-    private void copyWaveFile(String inFilename,String outFilename){
+    private boolean copyWaveFile(String inFilename,String outFilename){
         FileInputStream in = null;
         FileOutputStream out = null;
         long totalAudioLen = 0;
@@ -296,9 +316,12 @@ public class CorpusAdapter extends BaseAdapter {
             out.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
+            return false;
         } catch (IOException e) {
             e.printStackTrace();
+            return false;
         }
+        return true;
     }
 
     private void WriteWaveFileHeader(

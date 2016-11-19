@@ -3,8 +3,8 @@ package fr.m1_tlse3.mcs.corpusmic;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
+import android.app.Fragment;
+import android.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -19,9 +19,10 @@ import java.util.List;
 import fr.m1_tlse3.mcs.corpusmic.Fragments.AboutFragment;
 import fr.m1_tlse3.mcs.corpusmic.Fragments.CorpusFragment;
 import fr.m1_tlse3.mcs.corpusmic.Fragments.RecognizeFragment;
+import fr.m1_tlse3.mcs.corpusmic.Fragments.SettingsFragment;
 
 public class DrawerActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener{
+        implements NavigationView.OnNavigationItemSelectedListener {
 
     private static final String TAG = "CorpusMic/DrawerActivity";
 
@@ -70,8 +71,8 @@ public class DrawerActivity extends AppCompatActivity
         if (savedInstanceState == null) {
             String title = getResources().getString(R.string.nav_corpus);
             setTitle(title);
-            getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.content, new CorpusFragment()) //FIXME
+            getFragmentManager().beginTransaction()
+                    .replace(R.id.content, new CorpusFragment())
                     .commit();
         }
     }
@@ -126,8 +127,11 @@ public class DrawerActivity extends AppCompatActivity
             case R.id.nav_corpus:
                 fragmentClass = CorpusFragment.class;
                 break;
-            case R.id.nav_recognize:
+            /*case R.id.nav_recognize:
                 fragmentClass = RecognizeFragment.class;
+                break;*/
+            case R.id.nav_settings:
+                fragmentClass = SettingsFragment.class;
                 break;
             case R.id.nav_about:
                 fragmentClass = AboutFragment.class;
@@ -142,7 +146,7 @@ public class DrawerActivity extends AppCompatActivity
         }
 
         // Insert the fragment by replacing any existing fragment
-        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.content, fragment).commit();
 
         // Highlight the selected item has been done by NavigationView

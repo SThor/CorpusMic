@@ -13,4 +13,13 @@
     <string name="nav_about">À propos</string>
     <string name="created">" créé."</string>
     <string name="file">"Fichier "</string>
+    <string name="nav_settings">Paramètres de nommage</string>
+    <string-array name="gender_entries">
+        <item>"Homme"</item>
+        <item>"Femme"</item>
+    </string-array>
+    <string name="error">Erreur lors de la création du fichier. Merci de vérifier les permissions de l\'application.</string>
+    <string name="pref_gender">Genre</string>
+    <string name="pref_useGender">Utiliser le genre</string>
+    <string name="pref_userNumber">Nombre de l\'utilisateur</string>
 </resources>
