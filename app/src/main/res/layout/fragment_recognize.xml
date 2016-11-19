@@ -10,6 +10,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_above="@+id/fab"
+        android:id="@+id/linear"
         >
         <!--android:layout_centerVertical="true"-->
 

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="action_settings">Paramètres</string>
     <string name="hello_blank_fragment">Bonjour fragment vide</string>
     <string name="navigation_drawer_close">Fermer le tiroir de navigation</string>
     <string name="navigation_drawer_open">Ouvrir le tiroir de navigation</string>
@@ -14,4 +13,14 @@
     <string name="nav_about">À propos</string>
     <string name="created">" créé."</string>
     <string name="file">"Fichier "</string>
+    <string name="nav_settings">Paramètres de nommage</string>
+    <string-array name="pref_genderEntries">
+        <item>"Homme"</item>
+        <item>"Femme"</item>
+    </string-array>
+    <string name="error">Erreur lors de la création du fichier. Merci de vérifier les permissions de l\'application.</string>
+    <string name="pref_gender">Genre</string>
+    <string name="pref_useGender">Utiliser le genre</string>
+    <string name="pref_userNumber">Nombre de l\'utilisateur</string>
+    <string name="delete_all">Supprimer les fichiers audio</string>
 </resources>

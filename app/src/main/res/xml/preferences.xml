@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <SwitchPreference
+        android:key="pref_useGender"
+        android:title="@string/pref_useGender"
+        android:defaultValue="true"
+        android:disableDependentsState="false"
+        android:switchTextOff="no"
+        android:switchTextOn="yes"/>
+    <ListPreference
+        android:key="pref_gender"
+        android:dependency="pref_useGender"
+        android:title="@string/pref_gender"
+        android:entries="@array/pref_genderEntries"
+        android:entryValues="@array/pref_genderValues"
+        android:defaultValue="F"/>
+    <EditTextPreference
+        android:defaultValue="00"
+        android:dialogTitle="@string/pref_userNumber"
+        android:inputType="number"
+        android:key="pref_userNumber"
+        android:title="@string/pref_userNumber" />
+</PreferenceScreen>
