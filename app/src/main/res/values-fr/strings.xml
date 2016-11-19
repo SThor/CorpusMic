@@ -14,7 +14,7 @@
     <string name="created">" créé."</string>
     <string name="file">"Fichier "</string>
     <string name="nav_settings">Paramètres de nommage</string>
-    <string-array name="gender_entries">
+    <string-array name="pref_genderEntries">
         <item>"Homme"</item>
         <item>"Femme"</item>
     </string-array>
@@ -22,4 +22,5 @@
     <string name="pref_gender">Genre</string>
     <string name="pref_useGender">Utiliser le genre</string>
     <string name="pref_userNumber">Nombre de l\'utilisateur</string>
+    <string name="delete_all">Supprimer les fichiers audio</string>
 </resources>

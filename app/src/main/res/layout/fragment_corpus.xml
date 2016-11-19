@@ -7,9 +7,10 @@
     <ListView
         android:id="@android:id/list"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true" />
+        android:layout_alignParentTop="true"
+        android:layout_above="@+id/deleteAll_button" />
 
     <TextView
         android:id="@android:id/empty"
@@ -18,5 +19,15 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:text="@string/text_empty" />
+    <Button
+        android:id="@+id/deleteAll_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:text="@string/delete_all"
+        android:drawableStart="@drawable/ic_delete"
+        android:drawableTint="@color/colorAccent"
+        style="?android:attr/borderlessButtonStyle"/>
 
 </RelativeLayout>

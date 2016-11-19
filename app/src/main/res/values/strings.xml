@@ -22,6 +22,7 @@
     <string name="pref_gender">Gender</string>
     <string name="error">Error in file creation. Please check app permissions.</string>
     <string name="pref_userNumber">User number</string>
+    <string name="delete_all">Delete all audio files</string>
 
     <string-array name="commands">
         <item>"Arrête toi"</item>
